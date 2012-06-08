@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[modx custom bbcodes]]></title>
+		<description lang="en"><![CDATA[a very small mod that enhances the existing code bbcode to allows for modx related postings such as FIND and ADD AFTER through a drop down menu
+Add a new BBcode
+
+USAGE
+
+[install]{TEXT}[/install]
+
+HTML Replacement
+
+ <div style="background-color: #d6e6f6; border: 1px solid gray; padding: 10px 5px; -moz-border-radius: 5px 5px 5px 5px; margin-bottom: 4px;">{TEXT}</div>
+
+
+display on posting page? no]]></description>
+		<author-notes lang="en"><![CDATA[i just put his (Sniper_E) code into a mod format that works using automod. i lay 0 claim to any of the actual code used.
+
+http://www.rmcgirr83.org/viewtopic.php?f=5&t=1575]]></author-notes>
+		<author-group>
+			<author>
+				<username><![CDATA[Sniper_E]]></username>
+				<homepage><![CDATA[http://www.rmcgirr83.org/viewtopic.php?f=5&t=1575]]></homepage>
+			</author>
+		</author-group>
+		<mod-version>1.00</mod-version>
+		<installation>
+			<level>easy</level>
+		</installation>
+	</header>
+	<action-group>
+		<open src="language/en/posting.php">
+			<edit>
+				<find><![CDATA[	'MORE_SMILIES'				=> 'View more smilies',]]></find>
+				<action type="after-add"><![CDATA[/** Begin MODx Instructions */
+           'MODX_CMD'         => 'MODx command',
+           'BBCODE21_FIND'      => '[b]Find[/b] [i][size=85]This may be a partial find and not the whole line[/size][/i]',
+           'BBCODE21_AFTER'   => '[b][color=#008000]Add after[/color][/b] [i][size=85]Add these lines on a new blank line after the preceding line(s) to find[/size][/i]',
+           'BBCODE21_BEFORE'   => '[b][color=#BF0080]Add before[/color][/b] [i][size=85]Add these lines on a new blank line before the preceding line(s) to find[/size][/i]',
+           'BBCODE21_REPLACE'   => '[b][color=#BF0000]Replace with[/b][/color] [i][size=85]Replace the preceding lines with the following[/size][/i]',
+           'BBCODE21_DELETE'   => '[b][color=#FF0000]Delete[/b][/color] [i][size=85]Remove the preceding lines[/size][/i]',
+           'BBCODE21_INFIND'   => '[b][color=#BF0080]In line find[/b][/color] [i][size=85]This is a partial match of a line for in-line operations[/size][/i]',
+           'BBCODE21_INAFTER'   => '[b][color=#BF0080]In line add after[/b][/color]',
+           'BBCODE21_INBEFORE'   => '[b][color=#BF0080]In line add before[/b][/color]',
+           'BBCODE21_INREPLACE'   => '[b][color=#BF0080]In line replace with[/b][/color]',
+/** End MODx Instructions */
+]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/posting_buttons.html">
+			<edit>
+				<find><![CDATA[	<!-- IF S_BBCODE_FLASH -->
+		<input type="button" class="button2" accesskey="d" name="addbbcode18" value="Flash" onclick="bbstyle(18)" title="{L_BBCODE_D_HELP}" />
+	<!-- ENDIF -->]]></find>
+				<action type="after-add"><![CDATA[<select name="addbbcode21" onchange="bbfontstyle('[install]' + this.form.addbbcode21.options[this.form.addbbcode21.selectedIndex].value + ' [code]', '[/code][/install]');this.form.addbbcode21.selectedIndex = 0;" title="{L_MODX_CMD}">
+              <option value="0" selected="selected" style="display: none">{L_MODX_CMD}</option>
+                <option value="{L_BBCODE21_FIND}">Find</option>
+                <option value="{L_BBCODE21_AFTER}">Add after</option>
+                <option value="{L_BBCODE21_BEFORE}">Add before</option>       
+                <option value="{L_BBCODE21_REPLACE}">Replace with</option>
+               <option value="{L_BBCODE21_DELETE}">Delete</option>
+                <option value="{L_BBCODE21_INFIND}">In line find</option>
+                <option value="{L_BBCODE21_INAFTER}">In line add after</option>
+                <option value="{L_BBCODE21_INBEFORE}">In line add before</option>   
+                <option value="{L_BBCODE21_INREPLACE}">In line replace with</option>
+            </select>]]></action>
+			</edit>
+		</open>
+		<diy-instructions lang="en"><![CDATA[Add a new BBcode
+
+USAGE
+
+[install]{TEXT}[/install]
+
+HTML Replacement
+
+ <div style="background-color: #d6e6f6; border: 1px solid gray; padding: 10px 5px; -moz-border-radius: 5px 5px 5px 5px; margin-bottom: 4px;">{TEXT}</div>
+
+
+display on posting page? no]]></diy-instructions>
+	</action-group>
+</mod>
